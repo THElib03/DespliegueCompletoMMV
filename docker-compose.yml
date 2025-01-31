@@ -2,7 +2,7 @@ services:
     frontend:
         build:
             context: ./frontend
-            dockerfile: DockerfileFrontend
+            dockerfile: DockerfileFrontendMMV
         container_name: frontendMMV
         ports:
         - "3000:3000"
@@ -18,7 +18,7 @@ services:
     backend:
         build:
             context: ./backend
-            dockerfile: DockerfileBackend
+            dockerfile: DockerfileBackendMMV
         container_name: backendMMV
         ports:
         - "8000:8000"
@@ -26,7 +26,7 @@ services:
         - ./backend:/app
         depends_on:
         - database
-        command: > sh -c "composer install && composer show doctrine/dbal && php -S 0.0.0.0:8000 -t public"
+        command: sh -c "composer install && composer show doctrine/dbal && php -S 0.0.0.0:8000 -t public"
         networks:
         - app-network
 
@@ -54,15 +54,16 @@ services:
         environment:
             PMA_HOST: database
             PMA_USER: user
-            PMA_PASSWORD: passworddepends_on:
-            - database
+            PMA_PASSWORD: password
+        depends_on:
+        - database
         networks:
         - app-network
 
     web:
         build:
             context: ./web
-            dockerfile: DockerfileWeb
+            dockerfile: DockerfileWebMMV
         container_name: webMMV
         ports:
         - "80:80"
