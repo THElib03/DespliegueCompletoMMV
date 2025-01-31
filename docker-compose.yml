@@ -3,6 +3,7 @@ services:
         build:
             context: ./frontend
             dockerfile: DockerfileFrontend
+        container_name: frontendMMV
         ports:
         - "3000:3000"
         volumes:
@@ -18,21 +19,20 @@ services:
         build:
             context: ./backend
             dockerfile: DockerfileBackend
+        container_name: backendMMV
         ports:
         - "8000:8000"
         volumes:
         - ./backend:/app
         depends_on:
         - database
-        command: >
-        sh -c "
-        composer install &&
-        composer show doctrine/dbal &&
-        php -S 0.0.0.0:8000 -t public"
+        command: > sh -c "composer install && composer show doctrine/dbal && php -S 0.0.0.0:8000 -t public"
         networks:
         - app-network
+
     database:
         image: mysql:8.0
+        container_name: dbMMV
         ports:
         - "3306:3306"
         environment:
@@ -45,8 +45,10 @@ services:
         - database_data:/var/lib/mysql
         networks:
         - app-network
+
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
+        container_name: phpmyadminMMV
         ports:
         - "8080:80"
         environment:
@@ -56,10 +58,12 @@ services:
             - database
         networks:
         - app-network
+
     web:
         build:
             context: ./web
             dockerfile: DockerfileWeb
+        container_name: webMMV
         ports:
         - "80:80"
         depends_on:
@@ -67,9 +71,11 @@ services:
         - backend
         networks:
         - app-network
+
 networks:
     app-network:
         driver: bridge
+
 volumes:
     database_data:
         driver: local
