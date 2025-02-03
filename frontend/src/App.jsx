@@ -11,7 +11,7 @@ function App() {
     }, []);
     return (
         <div>
-            <h1>Frontend en React de Nombre Completo</h1>
+            <h1>Frontend en React de Martín Marín Vilches</h1>
             <p>
                 Esta aplicación se conecta al backend de Symfony pidiéndole una
                 respuesta
