@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DBController extends AbstractController
+class MMV_Controller extends AbstractController
 {
     private Connection $connection;
     public function __construct(Connection $connection)
@@ -18,14 +18,14 @@ class DBController extends AbstractController
     public function index(): JsonResponse
     {
         // Consulta para recuperar el primer mensaje de la tabla "messages"
-        $sql = 'SELECT content FROM messages LIMIT 1';
+        $sql = 'SELECT fraseMMV FROM secretosMMV LIMIT 1';
         $result = $this->connection->fetchOne($sql);
         // Si no hay mensaje en la BD, devolver un mensaje de error
         if (!$result) {
-            return $this->json(['message' => 'No messages found in the database!']);
+            return $this->json(['tablammv' => 'No messages found in the database!']);
         } else {
             $result = 'Backend Operativo, respuesta de la BD: ' . $result;
-            return $this->json(['message' => $result]);
+            return $this->json(['tablammv' => $result]);
         }
     }
 }

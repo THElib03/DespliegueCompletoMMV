@@ -16,7 +16,7 @@ function App() {
                 Esta aplicación se conecta al backend de Symfony pidiéndole una
                 respuesta
             </p>
-            <p>respuesta del Backend: {message || "Loading..."}</p>
+            <p>respuesta del Backend: {message || "DB is slow today, wait a moment"}</p>
         </div>
     );
 }

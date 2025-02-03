@@ -1,6 +1,6 @@
-CREATE TABLE messages (
+CREATE TABLE secretosMMV (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    content VARCHAR(255) NOT NULL
+    fraseMMV VARCHAR(255) NOT NULL
 );
 
-INSERT INTO messages (content) VALUES ('La base de datos responde, Holaaa!');
+INSERT INTO secretosMMV(fraseMMV) VALUES ('La base de datos responde, buenos días Martín Marín Vilches');
